@@ -1,6 +1,8 @@
 import React from "react";
 import "./sidebar.css";
 import { RssFeed, Chat, PlayCircleFilledOutlined, Bookmark, Group, HelpOutline, WorkOutline, Event, School } from "@material-ui/icons";
+import { Users } from "../../data";
+import Friend from "../friend/Friend";
 
 export default function Sidebar() {
   return (
@@ -47,34 +49,9 @@ export default function Sidebar() {
         <button className="sidebarButton">Show More</button>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendlist">
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src="/resource/profile/profile2.jpg" alt="" className="sidebarFriendIMG" />
-            <span className="sidebarFriendName">Katie</span>
-          </li>
+          {Users.map(friend=> (
+            <Friend key={friend.id} friend={friend} />
+          ))}
         </ul>
       </div>
     </div>
