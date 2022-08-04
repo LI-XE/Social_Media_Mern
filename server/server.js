@@ -23,6 +23,7 @@ app.use(morgan("common"));
 
 app.use("/api/user", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/post", require("./routes/posts"));
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
