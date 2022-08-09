@@ -20,8 +20,12 @@
   justify-content: center;
 }
 
+.left {
+  margin-right: 20px;
+}
+
 .loginLogo {
-  font-style: 50px;
+  font-size: 50px;
   font-weight: 800;
   color: #1775ee;
   margin-bottom: 10px;
@@ -61,6 +65,14 @@
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.loginBtn:focus {
+  outline: none;
+}
+
+.loginBtn:disabled {
+  cursor: not-allowed;
 }
 
 .loginForgot {
