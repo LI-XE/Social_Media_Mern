@@ -1,7 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./register.css";
 
 export default function Register() {
+  const username = useRef();
+  const email = useRef();
+  const password = useRef();
+  const passwordConfirm = useRef();
+  const navigate = useNavigate();
+
+  const registerHandle = async (e) => {
+    e.preventDefault();
+    if (passwordConfirm.current.value !== password.current.value) {
+      password.current.setCustomValidity("Passwords don't match!");
+    } else {
+      const user = {
+        username: username.current.value,
+        email: email.current.value,
+        password: password.current.value,
+      };
+      try {
+        await axios.post("/auth/register", user);
+        navigate("/login");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   return (
     <div className="register">
       <div className="registerWrapper">
@@ -12,26 +39,39 @@ export default function Register() {
           </span>
         </div>
         <div className="right">
-          <div className="registerBox">
+          <form className="registerBox" onSubmit={registerHandle}>
             <input
               type="text"
-              placeholder="Usernaem"
+              ref={username}
+              required
+              placeholder="Username"
               className="registerInput"
             />
-            <input type="text" placeholder="Email" className="registerInput" />
             <input
-              type="text"
+              type="email"
+              placeholder="Email"
+              required
+              ref={email}
+              className="registerInput"
+            />
+            <input
+              type="password"
+              ref={password}
+              required
               placeholder="Password"
+              minLength={6}
               className="registerInput"
             />
             <input
-              type="text"
+              type="password"
+              ref={passwordConfirm}
+              required
               placeholder="Password Confirm"
               className="registerInput"
             />
             <button className="registerBtn">Sign up</button>
             <button className="registerRegisterBtn">Log into Account</button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
