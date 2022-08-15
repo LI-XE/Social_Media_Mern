@@ -10,7 +10,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Topbar from "./components/topbar/Topbar";
 import { AuthContext } from "./context/AuthContext";
-import { useContext } from "react";
+import react, { useContext } from "react";
 
 function App() {
   const { user } = useContext(AuthContext);
