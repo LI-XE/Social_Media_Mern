@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./post.css";
 import { MoreVert } from "@material-ui/icons";
-// import { format } from "timeago.js";
+import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -21,7 +21,7 @@ export default function Post({ post }) {
   useEffect(() => {
     const fetchUser = async () => {
       await axios.get(`/user?userId=${post.userId}`).then((res) => {
-        console.log(res);
+        // console.log(res);
         setUser(res.data);
       });
     };
@@ -55,7 +55,7 @@ export default function Post({ post }) {
               />
             </Link>
             <span className="postUsername">{user.username}</span>
-            {/* <span className="postDate">{format(post.createdAt)}</span> */}
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="topRight">
             <MoreVert />
