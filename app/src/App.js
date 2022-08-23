@@ -11,6 +11,7 @@ import Register from "./pages/register/Register";
 import Topbar from "./components/topbar/Topbar";
 import { AuthContext } from "./context/AuthContext";
 import react, { useContext } from "react";
+import Messenger from "./pages/messenger/Messenger";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -31,6 +32,11 @@ function App() {
             path="/register"
             exact
             element={user ? <Navigate to="/" /> : <Register />}
+          />
+          <Route
+            path="/messenger"
+            exact
+            element={!user ? <Navigate to="/" /> : <Messenger />}
           />
         </Routes>
       </Router>
