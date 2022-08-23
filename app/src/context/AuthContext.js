@@ -9,12 +9,8 @@ const INITIAL_STATE = {
     password: "$2b$10$ZtNFUWBfHPbwBt8rcnDytucDqVCjgeGhTDzoP5Ki8g4AAw6cTWIH.",
     profilePicture: "profile/profile1.jpg",
     coverPicture: "post/post1.jpg",
-    "followers": [
-      "62e8a50c62c4f1f9d7a044fc"
-  ],
-  "followings": [
-      "62e8be3700b2ef3ce456326e"
-  ],
+    followers: ["62e8a50c62c4f1f9d7a044fc"],
+    followings: ["62e8be3700b2ef3ce456326e"],
   },
   isFetching: false,
   error: false,

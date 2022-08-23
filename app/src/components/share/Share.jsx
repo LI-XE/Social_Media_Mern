@@ -1,4 +1,4 @@
-import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
+import { PermMedia, Label, Room, EmojiEmotions, Cancel } from "@material-ui/icons";
 import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -62,6 +62,12 @@ export default function Share() {
           />
         </div>
         <hr className="shareHr" />
+        {file && (
+          <div className="shareImgContainer">
+            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+            <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
+          </div>
+        )}
         <form className="bottom" onSubmit={(e) => submitHandler(e)}>
           <div className="options">
             <label htmlFor="file" className="option">

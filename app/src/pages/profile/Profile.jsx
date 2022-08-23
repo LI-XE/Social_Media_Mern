@@ -31,12 +31,20 @@ export default function Profile() {
           <div className="RightTop">
             <div className="profileCover">
               <img
-                src={user.coverPicture || PF + "noImage2.jpeg"}
+                src={
+                  user.coverPicture
+                    ? PF + user.coverPicture
+                    : PF + "noImage2.jpeg"
+                }
                 alt=""
                 className="coverImg"
               />
               <img
-                src={user.profilePicture || PF + "profile/noAvatar.png"}
+                src={
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "profile/noAvatar.png"
+                }
                 alt=""
                 className="userImg"
               />
