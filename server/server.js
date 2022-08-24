@@ -52,6 +52,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/user", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/post", require("./routes/posts"));
+app.use("/api/conversation", require("./routes/conversations"));
+app.use("/api/message", require("./routes/messages"));
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
