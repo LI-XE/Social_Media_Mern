@@ -1,20 +1,54 @@
 import "./chatOnline.css";
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
-function ChatOnline() {
+function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
+  const [friends, setFriends] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  useEffect(() => {
+    const getFriends = async () => {
+      const res = await axios.get("user/friends/" + currentId);
+      setFriends(res.data);
+    };
+    getFriends();
+  }, [currentId]);
+
+  useEffect(() => {
+    setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
+  }, [friends, onlineUsers]);
+
+  const handleClick = async (user) => {
+    try {
+      const res = await axios.get(`conversation/find/${currentId}/${user._id}`);
+      console.log(res);
+      setCurrentChat(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="chatOnline">
-      <div className="chatOnlineFriend">
-        <div className="chatOnlineImgContainer">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo6PXZJ1aARRNQzPGSl05mcyD-259xRyejUw&usqp=CAU"
-            alt=""
-            className="chatOnlineImg"
-          />
-          <div className="chatOnlineBadge"></div>
+      {onlineFriends?.map((o) => (
+        <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
+          <div className="chatOnlineImgContainer">
+            <img
+              src={
+                o.profilePicture
+                  ? PF + o.profilePicture
+                  : PF + "profile/noAvatar.png"
+              }
+              alt=""
+              className="chatOnlineImg"
+            />
+            <div className="chatOnlineBadge"></div>
+          </div>
+          <span className="chatOnlineName">{o?.username}</span>
         </div>
-        <span className="chatOnlineName">Willy</span>
-      </div>
+      ))}
     </div>
   );
 }

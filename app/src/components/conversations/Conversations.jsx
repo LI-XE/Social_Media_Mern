@@ -5,9 +5,11 @@ import React, { useState, useEffect } from "react";
 function Conversations({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // console.log(currentUser);
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser);
+    // console.log(friendId);
     const getUser = async () => {
       try {
         const res = await axios.get("user?userId=" + friendId);
